@@ -414,9 +414,9 @@
 
     function getParticleColor(type, alpha) {
       switch (type) {
-        case 'red': return `rgba(196,30,58,${alpha})`;
-        case 'gold': return `rgba(201,169,110,${alpha})`;
-        default: return `rgba(245,240,235,${alpha})`;
+        case 'red': return `rgba(184,28,50,${alpha})`;
+        case 'gold': return `rgba(160,90,70,${alpha})`;
+        default: return `rgba(242,232,228,${alpha})`;
       }
     }
 
