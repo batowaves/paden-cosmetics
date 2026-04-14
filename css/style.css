@@ -1305,7 +1305,6 @@ h1, h2, h3, h4 {
   left: -28px;
   border-color: rgba(196,30,58,0.7);
   border-width: 2px;
-  animation: heartbeat 0.8s ease-in-out infinite;
 }
 
 .cursor-ring.clicking {
@@ -1314,15 +1313,6 @@ h1, h2, h3, h4 {
   top: -16px;
   left: -16px;
   border-color: rgba(196,30,58,0.9);
-}
-
-@keyframes heartbeat {
-  0%   { transform: translate(var(--x, 0), var(--y, 0)) scale(1); border-color: rgba(196,30,58,0.7); }
-  15%  { transform: translate(var(--x, 0), var(--y, 0)) scale(1.15); border-color: rgba(196,30,58,0.9); }
-  30%  { transform: translate(var(--x, 0), var(--y, 0)) scale(1); }
-  45%  { transform: translate(var(--x, 0), var(--y, 0)) scale(1.1); border-color: rgba(196,30,58,0.8); }
-  60%  { transform: translate(var(--x, 0), var(--y, 0)) scale(1); border-color: rgba(196,30,58,0.5); }
-  100% { transform: translate(var(--x, 0), var(--y, 0)) scale(1); border-color: rgba(196,30,58,0.7); }
 }
 
 .cursor-trail-canvas {

@@ -469,13 +469,46 @@
       cursor.classList.remove('clicking');
     });
 
+    // Heartbeat state
+    let beatTime = 0;
+    const beatCurve = [
+      // time, scale pairs — mimics a real heartbeat (lub-dub)
+      [0, 1], [0.08, 1.2], [0.16, 1], [0.24, 1.15], [0.36, 1], [1, 1]
+    ];
+
+    function getHeartbeatScale(t) {
+      const phase = t % 1;
+      for (let i = 1; i < beatCurve.length; i++) {
+        if (phase <= beatCurve[i][0]) {
+          const prev = beatCurve[i - 1];
+          const curr = beatCurve[i];
+          const ratio = (phase - prev[0]) / (curr[0] - prev[0]);
+          return prev[1] + (curr[1] - prev[1]) * ratio;
+        }
+      }
+      return 1;
+    }
+
     function animateCursor() {
       // Smooth follow for ring
       rx += (cx - rx) * 0.15;
       ry += (cy - ry) * 0.15;
 
       cursor.style.transform = `translate(${cx}px, ${cy}px)`;
-      ring.style.transform = `translate(${rx}px, ${ry}px)`;
+
+      // Heartbeat scale on ring when hovering
+      if (hovering) {
+        beatTime += 0.02;
+        const scale = getHeartbeatScale(beatTime);
+        ring.style.transform = `translate(${rx}px, ${ry}px) scale(${scale})`;
+        // Pulse the dot glow too
+        const dotScale = 1 + (scale - 1) * 0.5;
+        cursor.style.boxShadow = `0 0 ${8 + (scale - 1) * 40}px rgba(196,30,58,${0.6 + (scale - 1) * 2})`;
+      } else {
+        beatTime = 0;
+        ring.style.transform = `translate(${rx}px, ${ry}px) scale(1)`;
+        cursor.style.boxShadow = '0 0 8px rgba(196,30,58,0.6)';
+      }
 
       // Draw trail
       tctx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
