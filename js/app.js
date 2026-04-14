@@ -47,7 +47,7 @@
         if (ch === '>') { inTag = false; result += ch; continue; }
         if (inTag || ch === ' ') { result += ch; continue; }
         // ~15% chance of drip on each letter
-        if (Math.random() < 0.15) {
+        if (Math.random() < 0.25) {
           const delay = (Math.random() * 2).toFixed(1);
           result += `<span class="drip-letter">${ch}<span class="drip-drop" style="--drip-delay:${delay}"></span></span>`;
         } else {
