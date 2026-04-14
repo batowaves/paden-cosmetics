@@ -127,8 +127,8 @@ h1, h2, h3, h4 {
   font-size: 1.75rem;
   font-weight: 400;
   letter-spacing: 0.08em;
-  color: var(--gold);
-  text-transform: uppercase;
+  color: var(--text);
+  text-transform: lowercase;
 }
 
 .logo span {
