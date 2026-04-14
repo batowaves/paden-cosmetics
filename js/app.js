@@ -414,7 +414,7 @@
 
     function getParticleColor(type, alpha) {
       switch (type) {
-        case 'red': return `rgba(139,18,37,${alpha})`;
+        case 'red': return `rgba(196,30,58,${alpha})`;
         case 'gold': return `rgba(201,169,110,${alpha})`;
         default: return `rgba(245,240,235,${alpha})`;
       }
@@ -560,13 +560,13 @@
         ring.style.transform = `translate(${rx}px, ${ry}px) scale(${scale})`;
         // Pulse the dot glow in sync
         const intensity = (scale - 0.95) / 0.3; // 0 to 1 range
-        cursor.style.boxShadow = `0 0 ${8 + intensity * 20}px rgba(139,18,37,${0.5 + intensity * 0.5})`;
-        ring.style.borderColor = `rgba(139,18,37,${0.4 + intensity * 0.5})`;
-        ring.style.boxShadow = `0 0 ${intensity * 15}px rgba(139,18,37,${intensity * 0.4}), inset 0 0 ${intensity * 8}px rgba(139,18,37,${intensity * 0.15})`;
+        cursor.style.boxShadow = `0 0 ${8 + intensity * 20}px rgba(196,30,58,${0.5 + intensity * 0.5})`;
+        ring.style.borderColor = `rgba(196,30,58,${0.4 + intensity * 0.5})`;
+        ring.style.boxShadow = `0 0 ${intensity * 15}px rgba(196,30,58,${intensity * 0.4}), inset 0 0 ${intensity * 8}px rgba(196,30,58,${intensity * 0.15})`;
       } else {
         beatTime = 0;
         ring.style.transform = `translate(${rx}px, ${ry}px) scale(1)`;
-        cursor.style.boxShadow = '0 0 8px rgba(139,18,37,0.6)';
+        cursor.style.boxShadow = '0 0 8px rgba(196,30,58,0.6)';
         ring.style.borderColor = '';
         ring.style.boxShadow = '';
       }
@@ -584,7 +584,7 @@
         const size = t.life * (hovering ? 4 : 2.5);
         tctx.beginPath();
         tctx.arc(t.x, t.y, size, 0, Math.PI * 2);
-        tctx.fillStyle = `rgba(139,18,37,${alpha})`;
+        tctx.fillStyle = `rgba(196,30,58,${alpha})`;
         tctx.fill();
       }
 
