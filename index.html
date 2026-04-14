@@ -12,33 +12,89 @@
 
   <!-- Loading Screen -->
   <div class="loader" id="loader">
-    <div class="loader-cherry" id="loaderCherry">
-      <svg viewBox="0 0 120 140" width="120" height="140" class="cherry-svg">
-        <!-- Stem -->
-        <path d="M60 10 Q55 40 52 60" stroke="#2d5a1e" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <!-- Leaf -->
-        <ellipse cx="68" cy="28" rx="14" ry="7" fill="#3a7a28" transform="rotate(-30 68 28)"/>
-        <!-- Cherry body -->
-        <circle cx="52" cy="82" r="28" fill="#8b1528" class="cherry-body"/>
-        <!-- Cherry shine -->
-        <ellipse cx="42" cy="72" rx="8" ry="6" fill="rgba(255,255,255,0.18)" transform="rotate(-20 42 72)"/>
-        <!-- Bite mask (animated) -->
-        <circle cx="78" cy="76" r="0" fill="#0a0a0a" class="cherry-bite">
-          <animate attributeName="r" from="0" to="18" dur="0.4s" begin="0.8s" fill="freeze"/>
+    <div class="loader-inner">
+      <div class="loader-glow"></div>
+      <svg viewBox="0 0 180 160" width="180" height="160" class="cherry-svg">
+        <defs>
+          <radialGradient id="cherryGrad" cx="40%" cy="35%" r="60%">
+            <stop offset="0%" stop-color="#9a1a2e"/>
+            <stop offset="40%" stop-color="#701222"/>
+            <stop offset="100%" stop-color="#3d0812"/>
+          </radialGradient>
+          <radialGradient id="cherryGrad2" cx="40%" cy="35%" r="60%">
+            <stop offset="0%" stop-color="#8a1628"/>
+            <stop offset="40%" stop-color="#64101e"/>
+            <stop offset="100%" stop-color="#350710"/>
+          </radialGradient>
+          <filter id="cherryBlur">
+            <feGaussianBlur stdDeviation="0.5"/>
+          </filter>
+        </defs>
+        <!-- Stems - elegant curves meeting at top -->
+        <path d="M88 12 Q82 35 68 62" stroke="#3d6b2a" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="0.1s" fill="freeze"/>
+        </path>
+        <path d="M88 12 Q96 38 112 58" stroke="#3d6b2a" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="0.15s" fill="freeze"/>
+        </path>
+        <!-- Leaf at junction -->
+        <path d="M86 14 Q96 6 108 10 Q100 18 88 16Z" fill="#4a8a34" opacity="0">
+          <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="0.2s" fill="freeze"/>
+        </path>
+        <path d="M92 12 Q98 9 104 11" stroke="#5aa042" stroke-width="0.8" fill="none" opacity="0">
+          <animate attributeName="opacity" from="0" to="0.6" dur="0.3s" begin="0.25s" fill="freeze"/>
+        </path>
+
+        <!-- Left cherry (slightly in front) -->
+        <g opacity="0">
+          <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.3s" fill="freeze"/>
+          <circle cx="65" cy="95" r="32" fill="url(#cherryGrad)"/>
+          <!-- Highlight -->
+          <ellipse cx="52" cy="82" rx="10" ry="7" fill="rgba(255,255,255,0.15)" transform="rotate(-25 52 82)"/>
+          <ellipse cx="50" cy="79" rx="4" ry="3" fill="rgba(255,255,255,0.25)" transform="rotate(-25 50 79)"/>
+          <!-- Bottom shadow -->
+          <ellipse cx="68" cy="118" rx="10" ry="3" fill="rgba(196,30,58,0.08)"/>
+        </g>
+
+        <!-- Right cherry -->
+        <g opacity="0">
+          <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.4s" fill="freeze"/>
+          <circle cx="115" cy="90" r="30" fill="url(#cherryGrad2)"/>
+          <!-- Highlight -->
+          <ellipse cx="103" cy="78" rx="9" ry="6" fill="rgba(255,255,255,0.13)" transform="rotate(-25 103 78)"/>
+          <ellipse cx="101" cy="76" rx="3.5" ry="2.5" fill="rgba(255,255,255,0.22)" transform="rotate(-25 101 76)"/>
+          <!-- Bottom shadow -->
+          <ellipse cx="118" cy="113" rx="9" ry="3" fill="rgba(196,30,58,0.06)"/>
+        </g>
+
+        <!-- Bite on right cherry (animated) -->
+        <circle cx="142" cy="84" r="0" fill="#0a0a0a">
+          <animate attributeName="r" from="0" to="17" dur="0.3s" begin="1.2s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/>
         </circle>
-        <!-- Bite marks / teeth edges -->
-        <circle cx="70" cy="68" r="0" fill="#0a0a0a" class="cherry-bite-edge">
-          <animate attributeName="r" from="0" to="6" dur="0.3s" begin="0.85s" fill="freeze"/>
+        <circle cx="136" cy="74" r="0" fill="#0a0a0a">
+          <animate attributeName="r" from="0" to="5" dur="0.2s" begin="1.25s" fill="freeze"/>
         </circle>
-        <circle cx="72" cy="84" r="0" fill="#0a0a0a" class="cherry-bite-edge2">
-          <animate attributeName="r" from="0" to="5" dur="0.3s" begin="0.9s" fill="freeze"/>
+        <circle cx="138" cy="94" r="0" fill="#0a0a0a">
+          <animate attributeName="r" from="0" to="4.5" dur="0.2s" begin="1.28s" fill="freeze"/>
         </circle>
-        <!-- Inner fruit color visible after bite -->
-        <circle cx="72" cy="76" r="0" fill="#c41e3a">
-          <animate attributeName="r" from="0" to="10" dur="0.35s" begin="0.82s" fill="freeze"/>
+        <!-- Exposed fruit flesh -->
+        <circle cx="134" cy="84" r="0" fill="#b82040">
+          <animate attributeName="r" from="0" to="9" dur="0.25s" begin="1.22s" fill="freeze"/>
+        </circle>
+        <!-- Juice drip from bite -->
+        <circle cx="140" cy="100" r="0" fill="#c41e3a" opacity="0.7">
+          <animate attributeName="r" from="0" to="2.5" dur="0.3s" begin="1.5s" fill="freeze"/>
+          <animate attributeName="cy" from="100" to="120" dur="0.8s" begin="1.5s" fill="freeze" calcMode="spline" keySplines="0.4 0 1 1"/>
+          <animate attributeName="opacity" from="0.7" to="0" dur="0.8s" begin="1.5s" fill="freeze"/>
         </circle>
       </svg>
-      <div class="loader-text font-display">paden<span>.</span></div>
+      <div class="loader-brand">
+        <div class="loader-text font-display">paden<span>.</span></div>
+        <div class="loader-tagline">Bugün yine çok güzelsin</div>
+      </div>
+      <div class="loader-progress">
+        <div class="loader-progress-bar"></div>
+      </div>
     </div>
   </div>
 

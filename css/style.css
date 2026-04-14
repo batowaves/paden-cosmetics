@@ -74,7 +74,7 @@ h1, h2, h3, h4 {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
 }
 
 .loader.done {
@@ -83,34 +83,83 @@ h1, h2, h3, h4 {
   pointer-events: none;
 }
 
-.loader-cherry {
+.loader-inner {
   text-align: center;
-  animation: loaderPulse 1.5s ease-in-out infinite;
+  position: relative;
 }
 
-.loader-cherry .cherry-svg {
-  margin-bottom: 20px;
-  filter: drop-shadow(0 4px 20px rgba(196,30,58,0.3));
+.loader-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(139,21,40,0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: glowPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -55%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -55%) scale(1.15); }
+}
+
+.cherry-svg {
+  margin-bottom: 24px;
+  filter: drop-shadow(0 8px 32px rgba(139,21,40,0.4));
+}
+
+.loader-brand {
+  opacity: 0;
+  animation: fadeUp 0.6s 0.5s forwards;
 }
 
 .loader-text {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 400;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--text);
   text-transform: lowercase;
-  opacity: 0;
-  animation: fadeUp 0.5s 0.4s forwards;
+  margin-bottom: 8px;
 }
 
 .loader-text span {
   color: var(--accent);
 }
 
-@keyframes loaderPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.03); }
+.loader-tagline {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+}
+
+.loader-progress {
+  width: 120px;
+  height: 1px;
+  background: var(--border);
+  margin: 28px auto 0;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeUp 0.3s 0.6s forwards;
+}
+
+.loader-progress-bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--accent-dark), var(--accent), var(--gold-dim));
+  animation: progressFill 1.8s 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes progressFill {
+  0% { width: 0; }
+  30% { width: 40%; }
+  60% { width: 70%; }
+  100% { width: 100%; }
 }
 
 /* ── Announcement Bar ── */
