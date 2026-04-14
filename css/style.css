@@ -17,22 +17,22 @@
 /* ── Variables ── */
 :root {
   --bg: #000000;
-  --bg-elevated: #080002;
-  --bg-card: #0d0104;
-  --bg-card-hover: #150208;
+  --bg-elevated: #0a0002;
+  --bg-card: #100206;
+  --bg-card-hover: #18030a;
   --text: #f2eaea;
   --text-muted: #a09090;
   --text-dim: #605050;
-  --accent: #dc143c;           /* Crimson Red */
-  --accent-light: #ff2850;     /* Bright Cherry */
-  --accent-dark: #5c0a1a;      /* Dark Burgundy */
-  --cherry: #b91c3a;           /* Cherry Red */
-  --blood: #8b0000;            /* Deep Red / Blood Red */
+  --accent: #800020;           /* True Burgundy */
+  --accent-light: #a31535;     /* Bright Burgundy */
+  --accent-dark: #4a0012;      /* Deep Burgundy */
+  --cherry: #9b1b30;           /* Wine Cherry */
+  --blood: #6b0018;            /* Dark Wine */
   --gold: #c49070;             /* Warm Gold */
   --gold-light: #dab098;       /* Light Gold */
   --gold-dim: #8a6050;         /* Muted Gold */
-  --border: rgba(220,20,60,0.12);
-  --border-light: rgba(220,20,60,0.06);
+  --border: rgba(128,0,32,0.12);
+  --border-light: rgba(128,0,32,0.06);
   --shadow: 0 4px 24px rgba(0,0,0,0.5);
   --shadow-lg: 0 12px 48px rgba(0,0,0,0.7);
   --radius: 2px;
@@ -112,7 +112,7 @@ h1, h2, h3, h4 {
   transform: translate(-50%, -55%);
   width: 200px;
   height: 200px;
-  background: radial-gradient(circle, rgba(220,20,60,0.25) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(128,0,32,0.25) 0%, transparent 70%);
   border-radius: 50%;
   animation: glowPulse 2s ease-in-out infinite;
   pointer-events: none;
@@ -125,7 +125,7 @@ h1, h2, h3, h4 {
 
 .cherry-svg {
   margin-bottom: 24px;
-  filter: drop-shadow(0 8px 32px rgba(220,20,60,0.5));
+  filter: drop-shadow(0 8px 32px rgba(128,0,32,0.5));
 }
 
 .loader-brand {
@@ -350,7 +350,7 @@ h1, h2, h3, h4 {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 30% 50%, rgba(220,20,60,0.3) 0%, transparent 60%),
+  background: radial-gradient(ellipse at 30% 50%, rgba(128,0,32,0.3) 0%, transparent 60%),
               radial-gradient(ellipse at 70% 80%, rgba(139,0,0,0.2) 0%, transparent 50%),
               radial-gradient(ellipse at 50% 100%, rgba(185,28,58,0.25) 0%, transparent 40%);
   z-index: 1;
@@ -547,7 +547,7 @@ h1, h2, h3, h4 {
 }
 
 .filter-btn.active {
-  background: rgba(220,20,60,0.08);
+  background: rgba(128,0,32,0.08);
 }
 
 /* ── Product Grid ── */
@@ -627,7 +627,7 @@ h1, h2, h3, h4 {
 .badge-bestseller {
   background: rgba(0,0,0,0.85);
   color: var(--gold-light);
-  border: 1px solid rgba(220,20,60,0.3);
+  border: 1px solid rgba(128,0,32,0.3);
 }
 
 .product-card-quick {
@@ -1340,7 +1340,7 @@ h1, h2, h3, h4 {
   transform: translateX(-50%);
   width: 3px;
   height: 0;
-  background: linear-gradient(180deg, var(--accent) 0%, rgba(220,20,60,0.3) 100%);
+  background: linear-gradient(180deg, var(--accent) 0%, rgba(128,0,32,0.3) 100%);
   border-radius: 0 0 3px 3px;
   animation: dripDown 3s ease-in forwards;
   animation-delay: calc(var(--drip-delay, 0) * 1s);
@@ -1390,7 +1390,7 @@ h1, h2, h3, h4 {
   z-index: 9999;
   will-change: transform;
   transition: width 0.25s, height 0.25s, top 0.25s, left 0.25s, background 0.25s;
-  box-shadow: 0 0 8px rgba(220,20,60,0.6);
+  box-shadow: 0 0 8px rgba(128,0,32,0.6);
 }
 
 .cursor-dot.hovering {
@@ -1399,7 +1399,7 @@ h1, h2, h3, h4 {
   top: -4px;
   left: -4px;
   background: #fff;
-  box-shadow: 0 0 12px rgba(220,20,60,0.9);
+  box-shadow: 0 0 12px rgba(128,0,32,0.9);
 }
 
 .cursor-dot.clicking {
@@ -1412,7 +1412,7 @@ h1, h2, h3, h4 {
   left: -20px;
   width: 40px;
   height: 40px;
-  border: 1.5px solid rgba(220,20,60,0.4);
+  border: 1.5px solid rgba(128,0,32,0.4);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
@@ -1425,7 +1425,7 @@ h1, h2, h3, h4 {
   height: 56px;
   top: -28px;
   left: -28px;
-  border-color: rgba(220,20,60,0.7);
+  border-color: rgba(128,0,32,0.7);
   border-width: 2px;
 }
 
@@ -1434,7 +1434,7 @@ h1, h2, h3, h4 {
   height: 32px;
   top: -16px;
   left: -16px;
-  border-color: rgba(220,20,60,0.9);
+  border-color: rgba(128,0,32,0.9);
 }
 
 .cursor-trail-canvas {

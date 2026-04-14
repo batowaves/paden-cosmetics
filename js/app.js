@@ -68,8 +68,10 @@
     });
   }
 
-  // Run after a short delay so hero animation finishes
-  setTimeout(initDripEffect, 2200);
+  // Run after a short delay so hero animation finishes (skip if reduced motion)
+  if (!prefersReducedMotion) {
+    setTimeout(initDripEffect, 2200);
+  }
 
   // ── Cart State ──
   function getCart() {
@@ -441,8 +443,8 @@
 
     function getParticleColor(type, alpha) {
       switch (type) {
-        case 'red': return `rgba(220,20,60,${alpha})`;
-        case 'cherry': return `rgba(185,28,58,${alpha})`;
+        case 'red': return `rgba(128,0,32,${alpha})`;
+        case 'cherry': return `rgba(155,27,48,${alpha})`;
         default: return `rgba(255,255,255,${alpha})`;
       }
     }
@@ -506,26 +508,31 @@
     let rx = -100, ry = -100;
     let hovering = false;
     let trail = [];
-    const maxTrail = 12;
+    const maxTrail = 20;
 
-    // Trail canvas
-    const trailCanvas = document.createElement('canvas');
-    trailCanvas.className = 'cursor-trail-canvas';
-    document.body.appendChild(trailCanvas);
-    const tctx = trailCanvas.getContext('2d');
+    // Trail canvas (skip if reduced motion)
+    let trailCanvas, tctx;
+    if (!prefersReducedMotion) {
+      trailCanvas = document.createElement('canvas');
+      trailCanvas.className = 'cursor-trail-canvas';
+      document.body.appendChild(trailCanvas);
+      tctx = trailCanvas.getContext('2d');
 
-    function resizeTrail() {
-      trailCanvas.width = window.innerWidth;
-      trailCanvas.height = window.innerHeight;
+      function resizeTrail() {
+        trailCanvas.width = window.innerWidth;
+        trailCanvas.height = window.innerHeight;
+      }
+      resizeTrail();
+      window.addEventListener('resize', resizeTrail);
     }
-    resizeTrail();
-    window.addEventListener('resize', resizeTrail);
 
     document.addEventListener('mousemove', e => {
       cx = e.clientX;
       cy = e.clientY;
-      trail.push({ x: cx, y: cy, life: 1 });
-      if (trail.length > maxTrail) trail.shift();
+      if (!prefersReducedMotion) {
+        trail.push({ x: cx, y: cy, life: 1 });
+        if (trail.length > maxTrail) trail.shift();
+      }
     });
 
     // Detect interactive elements
@@ -585,39 +592,41 @@
 
       cursor.style.transform = `translate(${cx}px, ${cy}px)`;
 
-      // Heartbeat scale on ring when hovering
-      if (hovering) {
+      // Heartbeat scale on ring when hovering (skip animation if reduced motion)
+      if (hovering && !prefersReducedMotion) {
         beatTime += 0.016;
         const scale = getHeartbeatScale(beatTime);
         ring.style.transform = `translate(${rx}px, ${ry}px) scale(${scale})`;
         // Pulse the dot glow in sync
         const intensity = (scale - 0.95) / 0.3; // 0 to 1 range
-        cursor.style.boxShadow = `0 0 ${8 + intensity * 20}px rgba(220,20,60,${0.5 + intensity * 0.5})`;
-        ring.style.borderColor = `rgba(220,20,60,${0.4 + intensity * 0.5})`;
-        ring.style.boxShadow = `0 0 ${intensity * 15}px rgba(220,20,60,${intensity * 0.4}), inset 0 0 ${intensity * 8}px rgba(220,20,60,${intensity * 0.15})`;
+        cursor.style.boxShadow = `0 0 ${8 + intensity * 20}px rgba(128,0,32,${0.5 + intensity * 0.5})`;
+        ring.style.borderColor = `rgba(128,0,32,${0.4 + intensity * 0.5})`;
+        ring.style.boxShadow = `0 0 ${intensity * 15}px rgba(128,0,32,${intensity * 0.4}), inset 0 0 ${intensity * 8}px rgba(128,0,32,${intensity * 0.15})`;
       } else {
         beatTime = 0;
         ring.style.transform = `translate(${rx}px, ${ry}px) scale(1)`;
-        cursor.style.boxShadow = '0 0 8px rgba(220,20,60,0.6)';
+        cursor.style.boxShadow = '0 0 8px rgba(128,0,32,0.6)';
         ring.style.borderColor = '';
         ring.style.boxShadow = '';
       }
 
-      // Draw trail
-      tctx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
-      for (let i = trail.length - 1; i >= 0; i--) {
-        const t = trail[i];
-        t.life -= 0.06;
-        if (t.life <= 0) {
-          trail.splice(i, 1);
-          continue;
+      // Draw trail (skip if reduced motion)
+      if (!prefersReducedMotion && tctx) {
+        tctx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+        for (let i = trail.length - 1; i >= 0; i--) {
+          const t = trail[i];
+          t.life -= 0.06;
+          if (t.life <= 0) {
+            trail.splice(i, 1);
+            continue;
+          }
+          const alpha = t.life * 0.3;
+          const size = t.life * (hovering ? 4 : 2.5);
+          tctx.beginPath();
+          tctx.arc(t.x, t.y, size, 0, Math.PI * 2);
+          tctx.fillStyle = `rgba(128,0,32,${alpha})`;
+          tctx.fill();
         }
-        const alpha = t.life * 0.3;
-        const size = t.life * (hovering ? 4 : 2.5);
-        tctx.beginPath();
-        tctx.arc(t.x, t.y, size, 0, Math.PI * 2);
-        tctx.fillStyle = `rgba(220,20,60,${alpha})`;
-        tctx.fill();
       }
 
       requestAnimationFrame(animateCursor);
