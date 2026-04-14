@@ -472,12 +472,13 @@
     // Heartbeat state
     let beatTime = 0;
     const beatCurve = [
-      // time, scale pairs — mimics a real heartbeat (lub-dub)
-      [0, 1], [0.08, 1.2], [0.16, 1], [0.24, 1.15], [0.36, 1], [1, 1]
+      // time, scale pairs — real heartbeat: lub-dub then short pause
+      [0, 1], [0.1, 1.25], [0.2, 0.95], [0.32, 1.18], [0.44, 1], [0.7, 1]
     ];
 
     function getHeartbeatScale(t) {
-      const phase = t % 1;
+      // Complete cycle every 0.7 units so the beat repeats faster
+      const phase = t % 0.7;
       for (let i = 1; i < beatCurve.length; i++) {
         if (phase <= beatCurve[i][0]) {
           const prev = beatCurve[i - 1];
@@ -498,16 +499,20 @@
 
       // Heartbeat scale on ring when hovering
       if (hovering) {
-        beatTime += 0.02;
+        beatTime += 0.016;
         const scale = getHeartbeatScale(beatTime);
         ring.style.transform = `translate(${rx}px, ${ry}px) scale(${scale})`;
-        // Pulse the dot glow too
-        const dotScale = 1 + (scale - 1) * 0.5;
-        cursor.style.boxShadow = `0 0 ${8 + (scale - 1) * 40}px rgba(196,30,58,${0.6 + (scale - 1) * 2})`;
+        // Pulse the dot glow in sync
+        const intensity = (scale - 0.95) / 0.3; // 0 to 1 range
+        cursor.style.boxShadow = `0 0 ${8 + intensity * 20}px rgba(196,30,58,${0.5 + intensity * 0.5})`;
+        ring.style.borderColor = `rgba(196,30,58,${0.4 + intensity * 0.5})`;
+        ring.style.boxShadow = `0 0 ${intensity * 15}px rgba(196,30,58,${intensity * 0.4}), inset 0 0 ${intensity * 8}px rgba(196,30,58,${intensity * 0.15})`;
       } else {
         beatTime = 0;
         ring.style.transform = `translate(${rx}px, ${ry}px) scale(1)`;
         cursor.style.boxShadow = '0 0 8px rgba(196,30,58,0.6)';
+        ring.style.borderColor = '';
+        ring.style.boxShadow = '';
       }
 
       // Draw trail
