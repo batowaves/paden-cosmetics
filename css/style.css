@@ -65,6 +65,54 @@ h1, h2, h3, h4 {
   line-height: 1.15;
 }
 
+/* ── Loading Screen ── */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader.done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-cherry {
+  text-align: center;
+  animation: loaderPulse 1.5s ease-in-out infinite;
+}
+
+.loader-cherry .cherry-svg {
+  margin-bottom: 20px;
+  filter: drop-shadow(0 4px 20px rgba(196,30,58,0.3));
+}
+
+.loader-text {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  text-transform: lowercase;
+  opacity: 0;
+  animation: fadeUp 0.5s 0.4s forwards;
+}
+
+.loader-text span {
+  color: var(--accent);
+}
+
+@keyframes loaderPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
 /* ── Announcement Bar ── */
 .announce-bar {
   background: var(--accent-dark);
@@ -1253,6 +1301,56 @@ h1, h2, h3, h4 {
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ── Drip Effect ── */
+.drip-letter {
+  position: relative;
+  display: inline-block;
+}
+
+.drip-drop {
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 0;
+  background: linear-gradient(180deg, var(--accent) 0%, rgba(196,30,58,0.3) 100%);
+  border-radius: 0 0 3px 3px;
+  animation: dripDown 3s ease-in forwards;
+  animation-delay: calc(var(--drip-delay, 0) * 1s);
+  opacity: 0.7;
+}
+
+.drip-drop::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  opacity: 0;
+  animation: dripBulge 3s ease-in forwards;
+  animation-delay: calc(var(--drip-delay, 0) * 1s);
+}
+
+@keyframes dripDown {
+  0% { height: 0; opacity: 0; }
+  10% { opacity: 0.7; }
+  60% { height: 20px; opacity: 0.6; }
+  80% { height: 28px; opacity: 0.4; }
+  100% { height: 32px; opacity: 0; }
+}
+
+@keyframes dripBulge {
+  0%, 50% { opacity: 0; transform: translateX(-50%) scale(0); }
+  65% { opacity: 0.8; transform: translateX(-50%) scale(1); }
+  85% { opacity: 0.6; transform: translateX(-50%) scale(1.2); }
+  100% { opacity: 0; transform: translateX(-50%) scale(0) translateY(12px); }
 }
 
 /* ── Custom Cursor ── */

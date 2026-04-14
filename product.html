@@ -10,9 +10,26 @@
 </head>
 <body>
 
+  <!-- Loading Screen -->
+  <div class="loader" id="loader">
+    <div class="loader-cherry" id="loaderCherry">
+      <svg viewBox="0 0 120 140" width="120" height="140" class="cherry-svg">
+        <path d="M60 10 Q55 40 52 60" stroke="#2d5a1e" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <ellipse cx="68" cy="28" rx="14" ry="7" fill="#3a7a28" transform="rotate(-30 68 28)"/>
+        <circle cx="52" cy="82" r="28" fill="#8b1528" class="cherry-body"/>
+        <ellipse cx="42" cy="72" rx="8" ry="6" fill="rgba(255,255,255,0.18)" transform="rotate(-20 42 72)"/>
+        <circle cx="78" cy="76" r="0" fill="#0a0a0a"><animate attributeName="r" from="0" to="18" dur="0.4s" begin="0.8s" fill="freeze"/></circle>
+        <circle cx="70" cy="68" r="0" fill="#0a0a0a"><animate attributeName="r" from="0" to="6" dur="0.3s" begin="0.85s" fill="freeze"/></circle>
+        <circle cx="72" cy="84" r="0" fill="#0a0a0a"><animate attributeName="r" from="0" to="5" dur="0.3s" begin="0.9s" fill="freeze"/></circle>
+        <circle cx="72" cy="76" r="0" fill="#c41e3a"><animate attributeName="r" from="0" to="10" dur="0.35s" begin="0.82s" fill="freeze"/></circle>
+      </svg>
+      <div class="loader-text font-display">paden<span>.</span></div>
+    </div>
+  </div>
+
   <!-- Announcement Bar -->
   <div class="announce-bar">
-    <span>Tüm siparişlerde ücretsiz kargo &nbsp;&bull;&nbsp; Bugün yine çok güzelsin &#10084;</span>
+    <span>Tüm siparişlerde ücretsiz kargo &nbsp;&bull;&nbsp; %100 Vegan &amp; Cruelty-Free &#127826;</span>
   </div>
 
   <!-- Header -->

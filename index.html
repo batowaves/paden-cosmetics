@@ -4,15 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Paden Cosmetics — Bugün Yine Çok Güzelsin</title>
-  <meta name="description" content="Paden Cosmetics — Cesur, gotik ve büyüleyici kozmetik ürünleri. Lip tint, ruj, parfüm ve daha fazlası.">
+  <meta name="description" content="Paden Cosmetics — Vegan, cruelty-free, yoğun pigmentli kozmetik. Kirazdan ilham, tutkuyla üretildi.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='24' font-size='24' fill='%23c41e3a'>P</text></svg>">
 </head>
 <body>
 
+  <!-- Loading Screen -->
+  <div class="loader" id="loader">
+    <div class="loader-cherry" id="loaderCherry">
+      <svg viewBox="0 0 120 140" width="120" height="140" class="cherry-svg">
+        <!-- Stem -->
+        <path d="M60 10 Q55 40 52 60" stroke="#2d5a1e" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- Leaf -->
+        <ellipse cx="68" cy="28" rx="14" ry="7" fill="#3a7a28" transform="rotate(-30 68 28)"/>
+        <!-- Cherry body -->
+        <circle cx="52" cy="82" r="28" fill="#8b1528" class="cherry-body"/>
+        <!-- Cherry shine -->
+        <ellipse cx="42" cy="72" rx="8" ry="6" fill="rgba(255,255,255,0.18)" transform="rotate(-20 42 72)"/>
+        <!-- Bite mask (animated) -->
+        <circle cx="78" cy="76" r="0" fill="#0a0a0a" class="cherry-bite">
+          <animate attributeName="r" from="0" to="18" dur="0.4s" begin="0.8s" fill="freeze"/>
+        </circle>
+        <!-- Bite marks / teeth edges -->
+        <circle cx="70" cy="68" r="0" fill="#0a0a0a" class="cherry-bite-edge">
+          <animate attributeName="r" from="0" to="6" dur="0.3s" begin="0.85s" fill="freeze"/>
+        </circle>
+        <circle cx="72" cy="84" r="0" fill="#0a0a0a" class="cherry-bite-edge2">
+          <animate attributeName="r" from="0" to="5" dur="0.3s" begin="0.9s" fill="freeze"/>
+        </circle>
+        <!-- Inner fruit color visible after bite -->
+        <circle cx="72" cy="76" r="0" fill="#c41e3a">
+          <animate attributeName="r" from="0" to="10" dur="0.35s" begin="0.82s" fill="freeze"/>
+        </circle>
+      </svg>
+      <div class="loader-text font-display">paden<span>.</span></div>
+    </div>
+  </div>
+
   <!-- Announcement Bar -->
   <div class="announce-bar">
-    <span>Tüm siparişlerde ücretsiz kargo &nbsp;&bull;&nbsp; Bugün yine çok güzelsin &#10084;</span>
+    <span>Tüm siparişlerde ücretsiz kargo &nbsp;&bull;&nbsp; %100 Vegan &amp; Cruelty-Free &#127826;</span>
   </div>
 
   <!-- Header -->
@@ -43,9 +75,9 @@
     </div>
     <div class="hero-content">
       <p class="hero-eyebrow">Paden Cosmetics</p>
-      <h1 class="hero-title font-display">Karanlığın <em>Büyüsü</em></h1>
+      <h1 class="hero-title font-display">Tutkunu <em>Sür</em></h1>
       <p class="hero-motto font-display">Bugün yine çok güzelsin</p>
-      <p class="hero-subtitle">Cesur tonlar, gotik ilham, zamansız güzellik.</p>
+      <p class="hero-subtitle">Kirazdan ilham, tutkuyla üretildi. %100 vegan &amp; cruelty-free.</p>
       <div class="hero-cta">
         <a href="#products" class="btn-primary">Koleksiyonu Keşfet</a>
         <a href="#story" class="btn-outline">Hikayemiz</a>
@@ -69,9 +101,9 @@
   <!-- Marquee -->
   <div class="marquee-section">
     <div class="marquee-track">
-      <span class="marquee-item">Lip Tint <span class="dot">&bull;</span> Ruj <span class="dot">&bull;</span> Parfüm <span class="dot">&bull;</span> Göz Farı <span class="dot">&bull;</span> Body Mist <span class="dot">&bull;</span> Lip Gloss <span class="dot">&bull;</span> Fondöten <span class="dot">&bull;</span> Allık</span>
-      <span class="marquee-item">Lip Tint <span class="dot">&bull;</span> Ruj <span class="dot">&bull;</span> Parfüm <span class="dot">&bull;</span> Göz Farı <span class="dot">&bull;</span> Body Mist <span class="dot">&bull;</span> Lip Gloss <span class="dot">&bull;</span> Fondöten <span class="dot">&bull;</span> Allık</span>
-      <span class="marquee-item">Lip Tint <span class="dot">&bull;</span> Ruj <span class="dot">&bull;</span> Parfüm <span class="dot">&bull;</span> Göz Farı <span class="dot">&bull;</span> Body Mist <span class="dot">&bull;</span> Lip Gloss <span class="dot">&bull;</span> Fondöten <span class="dot">&bull;</span> Allık</span>
+      <span class="marquee-item">Lip Tint <span class="dot">&#127826;</span> Ruj <span class="dot">&#127826;</span> Parfüm <span class="dot">&#127826;</span> Göz Farı <span class="dot">&#127826;</span> Body Mist <span class="dot">&#127826;</span> Lip Gloss <span class="dot">&#127826;</span> Fondöten <span class="dot">&#127826;</span> Allık</span>
+      <span class="marquee-item">Lip Tint <span class="dot">&#127826;</span> Ruj <span class="dot">&#127826;</span> Parfüm <span class="dot">&#127826;</span> Göz Farı <span class="dot">&#127826;</span> Body Mist <span class="dot">&#127826;</span> Lip Gloss <span class="dot">&#127826;</span> Fondöten <span class="dot">&#127826;</span> Allık</span>
+      <span class="marquee-item">Lip Tint <span class="dot">&#127826;</span> Ruj <span class="dot">&#127826;</span> Parfüm <span class="dot">&#127826;</span> Göz Farı <span class="dot">&#127826;</span> Body Mist <span class="dot">&#127826;</span> Lip Gloss <span class="dot">&#127826;</span> Fondöten <span class="dot">&#127826;</span> Allık</span>
     </div>
   </div>
 
@@ -81,10 +113,10 @@
       <div class="story-grid">
         <div class="story-text reveal">
           <p class="section-eyebrow">Hikayemiz</p>
-          <h2 class="font-display">Güzellik Cesaret <em>İster</em></h2>
-          <p>Paden Cosmetics, sıradanlığı reddeden kadınlar için doğdu. Gotik estetiğin zarif karanlığını modern kozmetik formülleriyle birleştiriyoruz.</p>
-          <p>Her ürünümüz, mitolojiden ve karanlık romantizmden ilham alarak isimlendirildi — Hekate'den Lethe'ye, Dark Paradise'tan Cherry Cola'ya. Çünkü güzellik sadece görünmek değil, hissettirmektir.</p>
-          <p>Lana Del Rey'in melankolik estetiğinden ilham alan lip tint koleksiyonumuzdan, yoğun pigmentli siyah rujumuza kadar her ürün, senin hikayeni anlatır.</p>
+          <h2 class="font-display">Bir Kirazla <em>Başladı</em></h2>
+          <p>Paden Cosmetics, kurucumuz Pelin Aden Bardakçı'nın kiraz rengine olan tutkusundan doğdu. İlk koleksiyonumuz tamamen kiraz tonlarından oluşuyordu — o cesur, derin bordo ilk günden beri DNA'mız.</p>
+          <p>Bugün renk yelpazemiz genişlese de felsefemiz aynı: yoğun pigment, uygun fiyat, sıfır uzlaşma. Tüm ürünlerimiz %100 vegan ve cruelty-free içeriklerle üretiliyor.</p>
+          <p>Güzellik sadece görünmek değil, hissettirmektir. Her ürünümüz seninle birlikte tutkunun rengini taşısın.</p>
         </div>
         <div class="story-visual reveal">
           <img src="https://cdn.shopier.app/pictures_mid/padenscosmetics_ae073a94ed9311b39c0adde86c7b3a13.jpeg" alt="Paden Cosmetics" loading="lazy">
@@ -94,19 +126,19 @@
 
       <div class="values-grid">
         <div class="value-card reveal">
-          <span class="value-icon">&#9830;</span>
-          <h4>Cesur Formüller</h4>
-          <p>Yoğun pigment, uzun süre kalıcılık. Her sürüşte tam kaplama ve kusursuz bitiş.</p>
+          <span class="value-icon">&#127826;</span>
+          <h4>Yoğun Pigment</h4>
+          <p>Tek sürüşte tam kaplama, gün boyu kalıcılık. Rengin gücünü dudaklarında hisset.</p>
         </div>
         <div class="value-card reveal">
           <span class="value-icon">&#9829;</span>
-          <h4>Gotik Estetik</h4>
-          <p>Karanlık romantizmden ilham alan tasarımlar. Her ürün bir sanat eseri gibi hissettirir.</p>
+          <h4>Vegan & Cruelty-Free</h4>
+          <p>Tüm ürünlerimiz %100 vegan ve hayvan deneyi yapılmadan üretiliyor. Güzelliğin vicdanı temiz.</p>
         </div>
         <div class="value-card reveal">
           <span class="value-icon">&#9733;</span>
-          <h4>Uygun Lüks</h4>
-          <p>Premium kaliteyi erişilebilir fiyatlarla sunuyoruz. Güzellik herkesin hakkı.</p>
+          <h4>Fiyat / Performans</h4>
+          <p>Premium kaliteyi erişilebilir fiyatlarla sunuyoruz. Lüks makyaj, uygun fiyat.</p>
         </div>
       </div>
     </div>
@@ -116,7 +148,7 @@
   <section class="section newsletter-section" id="contact">
     <div class="section-inner">
       <div class="newsletter-inner reveal">
-        <h2 class="font-display">Karanlık <em>Çember</em></h2>
+        <h2 class="font-display">Tutku <em>Çemberi</em></h2>
         <p>Yeni ürünler, özel indirimler ve sınırlı koleksiyonlardan ilk sen haberdar ol.</p>
         <form class="newsletter-form" onsubmit="return false;">
           <input type="email" placeholder="E-posta adresin">
@@ -132,7 +164,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="logo">paden<span>.</span></div>
-          <p>Bugün yine çok güzelsin. Cesur, gotik, büyüleyici kozmetik ürünleri ile karanlığın güzelliğini keşfet.</p>
+          <p>Bugün yine çok güzelsin. Kirazdan ilham alan, vegan ve cruelty-free kozmetik ürünleriyle tutkunu yansıt.</p>
           <div class="footer-social">
             <a href="https://www.instagram.com/padenscosmetics/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
             <a href="https://www.shopier.com/padenscosmetics" target="_blank" rel="noopener" aria-label="Shopier">SH</a>

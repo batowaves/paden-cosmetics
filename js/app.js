@@ -5,6 +5,62 @@
 (function() {
   'use strict';
 
+  // ── Loading Screen (always shows, like Spark) ──
+  const loader = document.getElementById('loader');
+  if (loader) {
+    // Always show for at least 2s so the cherry bite animation plays
+    const minDuration = 2000;
+    const startTime = Date.now();
+
+    function dismissLoader() {
+      const elapsed = Date.now() - startTime;
+      const remaining = Math.max(0, minDuration - elapsed);
+      setTimeout(() => {
+        loader.classList.add('done');
+        setTimeout(() => loader.remove(), 600);
+      }, remaining);
+    }
+
+    // Dismiss after page fully loads OR after timeout
+    if (document.readyState === 'complete') {
+      dismissLoader();
+    } else {
+      window.addEventListener('load', dismissLoader);
+    }
+  }
+
+  // ── Drip Effect on Random Letters ──
+  function initDripEffect() {
+    const dripTargets = document.querySelectorAll('.hero-title, .section-title, .detail-name');
+    dripTargets.forEach(el => {
+      const text = el.innerHTML;
+      // Don't re-process if already dripped
+      if (el.dataset.dripped) return;
+      el.dataset.dripped = 'true';
+
+      // Wrap each text character (skip HTML tags)
+      let inTag = false;
+      let result = '';
+      for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+        if (ch === '<') { inTag = true; result += ch; continue; }
+        if (ch === '>') { inTag = false; result += ch; continue; }
+        if (inTag || ch === ' ') { result += ch; continue; }
+        // ~15% chance of drip on each letter
+        if (Math.random() < 0.15) {
+          const delay = (Math.random() * 2).toFixed(1);
+          result += `<span class="drip-letter">${ch}<span class="drip-drop" style="--drip-delay:${delay}"></span></span>`;
+        } else {
+          result += ch;
+        }
+      }
+      el.innerHTML = result;
+    });
+  }
+
+  // Run after a short delay so hero animation finishes
+  setTimeout(initDripEffect, 2200);
+
   // ── Cart State ──
   let cart = JSON.parse(localStorage.getItem('paden-cart') || '[]');
 
