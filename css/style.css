@@ -1255,6 +1255,90 @@ h1, h2, h3, h4 {
   transform: translateY(0);
 }
 
+/* ── Custom Cursor ── */
+.cursor-dot {
+  position: fixed;
+  top: -5px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  transition: width 0.25s, height 0.25s, top 0.25s, left 0.25s, background 0.25s;
+  box-shadow: 0 0 8px rgba(196,30,58,0.6);
+}
+
+.cursor-dot.hovering {
+  width: 8px;
+  height: 8px;
+  top: -4px;
+  left: -4px;
+  background: #fff;
+  box-shadow: 0 0 12px rgba(196,30,58,0.9);
+}
+
+.cursor-dot.clicking {
+  transform: scale(0.6);
+}
+
+.cursor-ring {
+  position: fixed;
+  top: -20px;
+  left: -20px;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid rgba(196,30,58,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  will-change: transform;
+  transition: width 0.3s, height 0.3s, top 0.3s, left 0.3s, border-color 0.3s, border-width 0.3s;
+}
+
+.cursor-ring.hovering {
+  width: 56px;
+  height: 56px;
+  top: -28px;
+  left: -28px;
+  border-color: rgba(196,30,58,0.7);
+  border-width: 2px;
+  animation: heartbeat 0.8s ease-in-out infinite;
+}
+
+.cursor-ring.clicking {
+  width: 32px;
+  height: 32px;
+  top: -16px;
+  left: -16px;
+  border-color: rgba(196,30,58,0.9);
+}
+
+@keyframes heartbeat {
+  0%   { transform: translate(var(--x, 0), var(--y, 0)) scale(1); border-color: rgba(196,30,58,0.7); }
+  15%  { transform: translate(var(--x, 0), var(--y, 0)) scale(1.15); border-color: rgba(196,30,58,0.9); }
+  30%  { transform: translate(var(--x, 0), var(--y, 0)) scale(1); }
+  45%  { transform: translate(var(--x, 0), var(--y, 0)) scale(1.1); border-color: rgba(196,30,58,0.8); }
+  60%  { transform: translate(var(--x, 0), var(--y, 0)) scale(1); border-color: rgba(196,30,58,0.5); }
+  100% { transform: translate(var(--x, 0), var(--y, 0)) scale(1); border-color: rgba(196,30,58,0.7); }
+}
+
+.cursor-trail-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+/* Hide cursor globally on desktop */
+@media (min-width: 1025px) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
 /* ── Custom scrollbar ── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }

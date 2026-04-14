@@ -405,6 +405,103 @@
     renderParticles();
   }
 
+  // ── Custom Cursor: Heartbeat ──
+  if (window.innerWidth > 1024) {
+    const cursor = document.createElement('div');
+    cursor.className = 'cursor-dot';
+    const ring = document.createElement('div');
+    ring.className = 'cursor-ring';
+    document.body.appendChild(cursor);
+    document.body.appendChild(ring);
+
+    let cx = -100, cy = -100;
+    let rx = -100, ry = -100;
+    let hovering = false;
+    let trail = [];
+    const maxTrail = 12;
+
+    // Trail canvas
+    const trailCanvas = document.createElement('canvas');
+    trailCanvas.className = 'cursor-trail-canvas';
+    document.body.appendChild(trailCanvas);
+    const tctx = trailCanvas.getContext('2d');
+
+    function resizeTrail() {
+      trailCanvas.width = window.innerWidth;
+      trailCanvas.height = window.innerHeight;
+    }
+    resizeTrail();
+    window.addEventListener('resize', resizeTrail);
+
+    document.addEventListener('mousemove', e => {
+      cx = e.clientX;
+      cy = e.clientY;
+      trail.push({ x: cx, y: cy, life: 1 });
+      if (trail.length > maxTrail) trail.shift();
+    });
+
+    // Detect interactive elements
+    const interactiveSelectors = 'a, button, .product-card, .filter-btn, .quick-add-btn, input, .cart-btn, .menu-toggle';
+
+    document.addEventListener('mouseover', e => {
+      if (e.target.closest(interactiveSelectors)) {
+        hovering = true;
+        cursor.classList.add('hovering');
+        ring.classList.add('hovering');
+      }
+    });
+
+    document.addEventListener('mouseout', e => {
+      if (e.target.closest(interactiveSelectors)) {
+        hovering = false;
+        cursor.classList.remove('hovering');
+        ring.classList.remove('hovering');
+      }
+    });
+
+    // Click burst
+    document.addEventListener('mousedown', () => {
+      ring.classList.add('clicking');
+      cursor.classList.add('clicking');
+    });
+    document.addEventListener('mouseup', () => {
+      ring.classList.remove('clicking');
+      cursor.classList.remove('clicking');
+    });
+
+    function animateCursor() {
+      // Smooth follow for ring
+      rx += (cx - rx) * 0.15;
+      ry += (cy - ry) * 0.15;
+
+      cursor.style.transform = `translate(${cx}px, ${cy}px)`;
+      ring.style.transform = `translate(${rx}px, ${ry}px)`;
+
+      // Draw trail
+      tctx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+      for (let i = trail.length - 1; i >= 0; i--) {
+        const t = trail[i];
+        t.life -= 0.06;
+        if (t.life <= 0) {
+          trail.splice(i, 1);
+          continue;
+        }
+        const alpha = t.life * 0.3;
+        const size = t.life * (hovering ? 4 : 2.5);
+        tctx.beginPath();
+        tctx.arc(t.x, t.y, size, 0, Math.PI * 2);
+        tctx.fillStyle = `rgba(196,30,58,${alpha})`;
+        tctx.fill();
+      }
+
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // Hide default cursor
+    document.documentElement.style.cursor = 'none';
+  }
+
   // ── Init ──
   updateCartUI();
 
