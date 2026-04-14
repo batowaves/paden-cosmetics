@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "paden-dev",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "3002", "C:/My Web Sites/paden-redesign"],
+      "port": 3002
+    }
+  ]
+}
