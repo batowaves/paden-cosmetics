@@ -5,6 +5,16 @@
 (function() {
   'use strict';
 
+  // ── XSS Sanitize Helper ──
+  function sanitize(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  // ── Reduced Motion Preference ──
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   // ── Loading Screen (always shows, like Spark) ──
   const loader = document.getElementById('loader');
   if (loader) {
@@ -62,7 +72,15 @@
   setTimeout(initDripEffect, 2200);
 
   // ── Cart State ──
-  let cart = JSON.parse(localStorage.getItem('paden-cart') || '[]');
+  function getCart() {
+    try {
+      return JSON.parse(localStorage.getItem('paden-cart') || '[]');
+    } catch (e) {
+      return [];
+    }
+  }
+
+  let cart = getCart();
 
   function saveCart() {
     localStorage.setItem('paden-cart', JSON.stringify(cart));
@@ -115,13 +133,13 @@
           return `
             <div class="cart-item">
               <div class="cart-item-image">
-                <img src="${p.image}" alt="${p.name}" loading="lazy">
+                <img src="${sanitize(p.image)}" alt="${sanitize(p.name)}" loading="lazy">
               </div>
               <div class="cart-item-info">
-                <div class="cart-item-name">${p.name}</div>
-                <div class="cart-item-variant">${p.shade || CATEGORY_LABELS[p.category] || ''} &times; ${item.qty}</div>
+                <div class="cart-item-name">${sanitize(p.name)}</div>
+                <div class="cart-item-variant">${sanitize(p.shade || CATEGORY_LABELS[p.category] || '')} &times; ${item.qty}</div>
                 <div class="cart-item-price">\u20BA${(p.price * item.qty).toLocaleString('tr-TR')}</div>
-                <button class="cart-item-remove" data-id="${p.id}">Kald\u0131r</button>
+                <button class="cart-item-remove" data-id="${sanitize(p.id)}">Kald\u0131r</button>
               </div>
             </div>
           `;
@@ -135,21 +153,36 @@
   }
 
   // ── Cart Drawer ──
+  const cartDrawer = document.getElementById('cartDrawer');
+  const cartOverlay = document.getElementById('cartOverlay');
+
   function openCart() {
-    document.getElementById('cartDrawer').classList.add('open');
-    document.getElementById('cartOverlay').classList.add('open');
+    if (cartDrawer) {
+      cartDrawer.setAttribute('role', 'dialog');
+      cartDrawer.setAttribute('aria-modal', 'true');
+      cartDrawer.setAttribute('aria-label', 'Sepet');
+      cartDrawer.classList.add('open');
+    }
+    if (cartOverlay) cartOverlay.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
 
   function closeCart() {
-    document.getElementById('cartDrawer').classList.remove('open');
-    document.getElementById('cartOverlay').classList.remove('open');
+    if (cartDrawer) cartDrawer.classList.remove('open');
+    if (cartOverlay) cartOverlay.classList.remove('open');
     document.body.style.overflow = '';
   }
 
   document.getElementById('cartToggle')?.addEventListener('click', openCart);
   document.getElementById('cartClose')?.addEventListener('click', closeCart);
-  document.getElementById('cartOverlay')?.addEventListener('click', closeCart);
+  cartOverlay?.addEventListener('click', closeCart);
+
+  // Close cart on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && cartDrawer && cartDrawer.classList.contains('open')) {
+      closeCart();
+    }
+  });
 
   // ── Sticky Header ──
   const header = document.getElementById('siteHeader');
@@ -196,25 +229,25 @@
     if (product.tags.includes('bestseller')) badges += '<span class="badge badge-bestseller">\u2605 Best</span>';
 
     return `
-      <div class="product-card" data-id="${product.id}">
+      <a class="product-card" href="product.html?id=${encodeURIComponent(product.id)}" data-id="${sanitize(product.id)}">
         <div class="product-card-image">
-          <img src="${product.image}" alt="${product.name}" loading="lazy">
+          <img src="${sanitize(product.image)}" alt="${sanitize(product.name)}" loading="lazy">
           <div class="product-card-badge">${badges}</div>
           <div class="product-card-quick">
-            <button class="quick-add-btn" data-id="${product.id}">Sepete Ekle</button>
+            <button class="quick-add-btn" data-id="${sanitize(product.id)}">Sepete Ekle</button>
           </div>
         </div>
         <div class="product-card-info">
-          <div class="product-card-category">${CATEGORY_LABELS[product.category] || product.category}</div>
-          <div class="product-card-name">${product.name}</div>
-          ${product.shade ? '<div class="product-card-shade">' + product.shade + '</div>' : ''}
+          <div class="product-card-category">${sanitize(CATEGORY_LABELS[product.category] || product.category)}</div>
+          <div class="product-card-name">${sanitize(product.name)}</div>
+          ${product.shade ? '<div class="product-card-shade">' + sanitize(product.shade) + '</div>' : ''}
           <div class="product-card-price">
             <span class="price-current">\u20BA${product.price.toLocaleString('tr-TR')}</span>
             ${product.originalPrice ? '<span class="price-original">\u20BA' + product.originalPrice.toLocaleString('tr-TR') + '</span>' : ''}
             ${discount > 0 ? '<span class="price-discount">-' + discount + '%</span>' : ''}
           </div>
         </div>
-      </div>
+      </a>
     `;
   }
 
@@ -239,17 +272,10 @@
 
       productGrid.innerHTML = filtered.map(renderProductCard).join('');
 
-      // Click handlers for cards
-      productGrid.querySelectorAll('.product-card').forEach(card => {
-        card.addEventListener('click', (e) => {
-          if (e.target.closest('.quick-add-btn')) return;
-          window.location.href = 'product.html?id=' + card.dataset.id;
-        });
-      });
-
-      // Quick-add buttons
+      // Quick-add buttons (prevent navigation when clicking add-to-cart)
       productGrid.querySelectorAll('.quick-add-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
+          e.preventDefault();
           e.stopPropagation();
           const product = PRODUCTS.find(p => p.id === btn.dataset.id);
           if (product) addToCart(product);
@@ -300,7 +326,7 @@
 
       detailContainer.innerHTML = `
         <div class="product-detail-image">
-          <img src="${product.image}" alt="${product.name}">
+          <img src="${sanitize(product.image)}" alt="${sanitize(product.name)}">
         </div>
         <div>
           <div class="breadcrumb">
@@ -308,17 +334,17 @@
             <span class="sep">/</span>
             <a href="/#products">\u00DCr\u00FCnler</a>
             <span class="sep">/</span>
-            <span>${product.name}</span>
+            <span>${sanitize(product.name)}</span>
           </div>
-          <div class="detail-category">${CATEGORY_LABELS[product.category] || product.category}</div>
-          <h1 class="detail-name font-display">${product.name}</h1>
-          ${product.shade ? '<p class="detail-shade">' + product.shade + '</p>' : ''}
+          <div class="detail-category">${sanitize(CATEGORY_LABELS[product.category] || product.category)}</div>
+          <h1 class="detail-name font-display">${sanitize(product.name)}</h1>
+          ${product.shade ? '<p class="detail-shade">' + sanitize(product.shade) + '</p>' : ''}
           <div class="detail-price">
             <span class="price-current">\u20BA${product.price.toLocaleString('tr-TR')}</span>
             ${product.originalPrice ? '<span class="price-original">\u20BA' + product.originalPrice.toLocaleString('tr-TR') + '</span>' : ''}
             ${discount > 0 ? '<span class="price-discount">-%' + discount + ' indirim</span>' : ''}
           </div>
-          <p class="detail-description">${product.description}</p>
+          <p class="detail-description">${sanitize(product.description)}</p>
           <button class="add-to-cart-btn" id="addToCartBtn">Sepete Ekle</button>
           <a href="https://www.shopier.com/padenscosmetics" target="_blank" class="shopier-btn">Shopier'de Sat\u0131n Al</a>
           <div class="detail-accordion">
@@ -326,8 +352,8 @@
               <button class="accordion-trigger">\u00DCr\u00FCn Detay\u0131 <span class="icon">+</span></button>
               <div class="accordion-content">
                 <div class="accordion-content-inner">
-                  ${product.description}<br><br>
-                  Kategori: ${CATEGORY_LABELS[product.category] || product.category}
+                  ${sanitize(product.description)}<br><br>
+                  Kategori: ${sanitize(CATEGORY_LABELS[product.category] || product.category)}
                 </div>
               </div>
             </div>
@@ -384,11 +410,12 @@
 
   // ── Hero Canvas Particles ──
   const heroCanvas = document.getElementById('heroCanvas');
-  if (heroCanvas) {
+  if (heroCanvas && !prefersReducedMotion) {
     const ctx = heroCanvas.getContext('2d');
     let W, H;
     const particles = [];
     const maxParticles = 60;
+    let particleFrameId;
 
     function resizeCanvas() {
       const hero = heroCanvas.closest('.hero-bg');
@@ -422,6 +449,11 @@
 
     let frame = 0;
     function renderParticles() {
+      if (!document.contains(heroCanvas)) {
+        cancelAnimationFrame(particleFrameId);
+        return;
+      }
+
       frame++;
       ctx.clearRect(0, 0, W, H);
 
@@ -455,7 +487,7 @@
         ctx.fill();
       }
 
-      requestAnimationFrame(renderParticles);
+      particleFrameId = requestAnimationFrame(renderParticles);
     }
 
     renderParticles();

@@ -5,8 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Paden Cosmetics — Bugün Yine Çok Güzelsin</title>
   <meta name="description" content="Paden Cosmetics — Vegan, cruelty-free, yoğun pigmentli kozmetik. Kirazdan ilham, tutkuyla üretildi.">
+  <meta property="og:title" content="Paden Cosmetics — Bugün Yine Çok Güzelsin">
+  <meta property="og:description" content="Kirazdan ilham, tutkuyla üretildi. %100 vegan & cruelty-free kozmetik.">
+  <meta property="og:image" content="https://cdn.shopier.app/pictures_mid/padenscosmetics_ae073a94ed9311b39c0adde86c7b3a13.jpeg">
+  <meta property="og:url" content="https://batowaves.github.io/paden-cosmetics/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="tr_TR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap">
+  <link rel="preconnect" href="https://cdn.shopier.app">
+  <link rel="preload" href="fonts/GothicLoveRegular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='24' font-size='24' fill='%23c41e3a'>P</text></svg>">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Paden Cosmetics",
+    "url": "https://batowaves.github.io/paden-cosmetics/",
+    "logo": "https://cdn.shopier.app/pictures_mid/padenscosmetics_ae073a94ed9311b39c0adde86c7b3a13.jpeg",
+    "description": "Kirazdan ilham, tutkuyla üretildi. %100 vegan & cruelty-free kozmetik.",
+    "founder": "Pelin Aden Bardakçı",
+    "sameAs": [
+      "https://www.instagram.com/padenscosmetics/",
+      "https://www.shopier.com/padenscosmetics"
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -124,6 +151,7 @@
     </div>
   </header>
 
+  <main>
   <!-- Hero -->
   <section class="hero" id="hero">
     <div class="hero-bg">
@@ -207,12 +235,15 @@
         <h2 class="font-display">Tutku <em>Çemberi</em></h2>
         <p>Yeni ürünler, özel indirimler ve sınırlı koleksiyonlardan ilk sen haberdar ol.</p>
         <form class="newsletter-form" onsubmit="return false;">
-          <input type="email" placeholder="E-posta adresin">
+          <label for="newsletter-email" class="sr-only">E-posta adresi</label>
+          <input type="email" placeholder="E-posta adresin" id="newsletter-email" aria-label="E-posta adresi">
           <button type="submit">Katıl</button>
         </form>
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- Footer -->
   <footer class="site-footer">
@@ -247,7 +278,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2024 Paden Cosmetics. Tüm hakları saklıdır.</span>
+        <span>&copy; 2025 Paden Cosmetics. Tüm hakları saklıdır.</span>
         <span>Bugün yine çok güzelsin &#10084;</span>
       </div>
     </div>
@@ -272,7 +303,7 @@
     </div>
   </div>
 
-  <script src="js/products.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/products.js" defer></script>
+  <script src="js/app.js" defer></script>
 </body>
 </html>
