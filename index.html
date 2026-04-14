@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paden Cosmetics — Bugün Yine Çok Güzelsin</title>
+  <meta name="description" content="Paden Cosmetics — Cesur, gotik ve büyüleyici kozmetik ürünleri. Lip tint, ruj, parfüm ve daha fazlası.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/jpeg" href="https://cdn.shopier.app/logo_234/padenscosmetics5860_38B8FA17-828B-4C6F-893B-37E428D12C53.jpeg">
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announce-bar">
+    <span>Tüm siparişlerde ücretsiz kargo &nbsp;&bull;&nbsp; Bugün yine çok güzelsin &#10084;</span>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="/" class="logo">Pa<span>d</span>en</a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#products">Ürünler</a>
+        <a href="#story">Hakkımızda</a>
+        <a href="#contact">İletişim</a>
+        <a href="https://www.shopier.com/padenscosmetics" target="_blank" rel="noopener">Shopier</a>
+      </nav>
+      <div class="header-actions">
+        <button class="cart-btn" id="cartToggle">
+          Sepet <span class="cart-count" id="cartCount"></span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menü">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <canvas id="heroCanvas"></canvas>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Paden Cosmetics</p>
+      <h1 class="hero-title font-display">Karanlığın <em>Büyüsü</em></h1>
+      <p class="hero-subtitle">Cesur tonlar, gotik ilham, zamansız güzellik. Her ürün seni yansıtsın.</p>
+      <div class="hero-cta">
+        <a href="#products" class="btn-primary">Koleksiyonu Keşfet</a>
+        <a href="#story" class="btn-outline">Hikayemiz</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="section" id="products">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Koleksiyon</p>
+        <h2 class="section-title">Tüm <em>Ürünler</em></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="filter-bar reveal" id="filterBar"></div>
+      <div class="product-grid" id="productGrid"></div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <span class="marquee-item">Lip Tint <span class="dot">&bull;</span> Ruj <span class="dot">&bull;</span> Parfüm <span class="dot">&bull;</span> Göz Farı <span class="dot">&bull;</span> Body Mist <span class="dot">&bull;</span> Lip Gloss <span class="dot">&bull;</span> Fondöten <span class="dot">&bull;</span> Allık</span>
+      <span class="marquee-item">Lip Tint <span class="dot">&bull;</span> Ruj <span class="dot">&bull;</span> Parfüm <span class="dot">&bull;</span> Göz Farı <span class="dot">&bull;</span> Body Mist <span class="dot">&bull;</span> Lip Gloss <span class="dot">&bull;</span> Fondöten <span class="dot">&bull;</span> Allık</span>
+      <span class="marquee-item">Lip Tint <span class="dot">&bull;</span> Ruj <span class="dot">&bull;</span> Parfüm <span class="dot">&bull;</span> Göz Farı <span class="dot">&bull;</span> Body Mist <span class="dot">&bull;</span> Lip Gloss <span class="dot">&bull;</span> Fondöten <span class="dot">&bull;</span> Allık</span>
+    </div>
+  </div>
+
+  <!-- Story -->
+  <section class="section story-section" id="story">
+    <div class="section-inner">
+      <div class="story-grid">
+        <div class="story-text reveal">
+          <p class="section-eyebrow">Hikayemiz</p>
+          <h2 class="font-display">Güzellik Cesaret <em>İster</em></h2>
+          <p>Paden Cosmetics, sıradanlığı reddeden kadınlar için doğdu. Gotik estetiğin zarif karanlığını modern kozmetik formülleriyle birleştiriyoruz.</p>
+          <p>Her ürünümüz, mitolojiden ve karanlık romantizmden ilham alarak isimlendirildi — Hekate'den Lethe'ye, Dark Paradise'tan Cherry Cola'ya. Çünkü güzellik sadece görünmek değil, hissettirmektir.</p>
+          <p>Lana Del Rey'in melankolik estetiğinden ilham alan lip tint koleksiyonumuzdan, yoğun pigmentli siyah rujumuza kadar her ürün, senin hikayeni anlatır.</p>
+        </div>
+        <div class="story-visual reveal">
+          <img src="https://cdn.shopier.app/pictures_mid/padenscosmetics_ae073a94ed9311b39c0adde86c7b3a13.jpeg" alt="Paden Cosmetics" loading="lazy">
+          <div class="story-visual-overlay"></div>
+        </div>
+      </div>
+
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <span class="value-icon">&#9830;</span>
+          <h4>Cesur Formüller</h4>
+          <p>Yoğun pigment, uzun süre kalıcılık. Her sürüşte tam kaplama ve kusursuz bitiş.</p>
+        </div>
+        <div class="value-card reveal">
+          <span class="value-icon">&#9829;</span>
+          <h4>Gotik Estetik</h4>
+          <p>Karanlık romantizmden ilham alan tasarımlar. Her ürün bir sanat eseri gibi hissettirir.</p>
+        </div>
+        <div class="value-card reveal">
+          <span class="value-icon">&#9733;</span>
+          <h4>Uygun Lüks</h4>
+          <p>Premium kaliteyi erişilebilir fiyatlarla sunuyoruz. Güzellik herkesin hakkı.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="section newsletter-section" id="contact">
+    <div class="section-inner">
+      <div class="newsletter-inner reveal">
+        <h2 class="font-display">Karanlık <em>Çember</em></h2>
+        <p>Yeni ürünler, özel indirimler ve sınırlı koleksiyonlardan ilk sen haberdar ol.</p>
+        <form class="newsletter-form" onsubmit="return false;">
+          <input type="email" placeholder="E-posta adresin">
+          <button type="submit">Katıl</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">Pa<span>d</span>en</div>
+          <p>Bugün yine çok güzelsin. Cesur, gotik, büyüleyici kozmetik ürünleri ile karanlığın güzelliğini keşfet.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/padenscosmetics/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+            <a href="https://www.shopier.com/padenscosmetics" target="_blank" rel="noopener" aria-label="Shopier">SH</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Kategoriler</h4>
+          <a href="#" data-filter="lip-tint">Lip Tint</a>
+          <a href="#" data-filter="lipstick">Ruj</a>
+          <a href="#" data-filter="parfum">Parfüm</a>
+          <a href="#" data-filter="eyes">Göz Makyajı</a>
+          <a href="#" data-filter="body-mist">Body Mist</a>
+        </div>
+        <div class="footer-col">
+          <h4>Marka</h4>
+          <a href="#story">Hakkımızda</a>
+          <a href="https://www.instagram.com/padenscosmetics/" target="_blank">Instagram</a>
+          <a href="https://www.shopier.com/padenscosmetics" target="_blank">Shopier Mağaza</a>
+        </div>
+        <div class="footer-col">
+          <h4>İletişim</h4>
+          <a href="mailto:destek@padencosmetics.com">destek@padencosmetics.com</a>
+          <a href="https://www.instagram.com/padenscosmetics/" target="_blank">@padenscosmetics</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2024 Paden Cosmetics. Tüm hakları saklıdır.</span>
+        <span>Bugün yine çok güzelsin &#10084;</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Drawer -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3>Sepetiniz</h3>
+      <button class="cart-close" id="cartClose">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">Sepetiniz boş</div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Toplam</span>
+        <span class="cart-total-amount" id="cartTotal">&#8378;0</span>
+      </div>
+      <a href="https://www.shopier.com/padenscosmetics" target="_blank" class="cart-checkout-btn">Shopier'de Satın Al</a>
+    </div>
+  </div>
+
+  <script src="js/products.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

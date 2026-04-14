@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ürün — Paden Cosmetics</title>
+  <meta name="description" content="Paden Cosmetics ürün detayı">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/jpeg" href="https://cdn.shopier.app/logo_234/padenscosmetics5860_38B8FA17-828B-4C6F-893B-37E428D12C53.jpeg">
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announce-bar">
+    <span>Tüm siparişlerde ücretsiz kargo &nbsp;&bull;&nbsp; Bugün yine çok güzelsin &#10084;</span>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="/" class="logo">Pa<span>d</span>en</a>
+      <nav class="nav-links" id="navLinks">
+        <a href="/#products">Ürünler</a>
+        <a href="/#story">Hakkımızda</a>
+        <a href="/#contact">İletişim</a>
+        <a href="https://www.shopier.com/padenscosmetics" target="_blank" rel="noopener">Shopier</a>
+      </nav>
+      <div class="header-actions">
+        <button class="cart-btn" id="cartToggle">
+          Sepet <span class="cart-count" id="cartCount"></span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menü">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Product Detail -->
+  <div class="product-detail">
+    <div class="product-detail-grid" id="productDetail">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3>Sepetiniz</h3>
+      <button class="cart-close" id="cartClose">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">Sepetiniz boş</div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Toplam</span>
+        <span class="cart-total-amount" id="cartTotal">&#8378;0</span>
+      </div>
+      <a href="https://www.shopier.com/padenscosmetics" target="_blank" class="cart-checkout-btn">Shopier'de Satın Al</a>
+    </div>
+  </div>
+
+  <script src="js/products.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
