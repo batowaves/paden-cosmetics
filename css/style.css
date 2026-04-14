@@ -30,9 +30,9 @@
   --accent-dark: #5c0a1a;      /* Dark Burgundy */
   --cherry: #b91c3a;           /* Cherry Red */
   --blood: #8b0000;            /* Deep Red / Blood Red */
-  --gold: #d8d0d0;             /* Specular Silver (replaces gold) */
-  --gold-light: #f0eaea;       /* Near-white highlight */
-  --gold-dim: #786060;         /* Muted reddish-gray */
+  --gold: #c49070;             /* Warm Gold */
+  --gold-light: #dab098;       /* Light Gold */
+  --gold-dim: #8a6050;         /* Muted Gold */
   --border: rgba(220,20,60,0.12);
   --border-light: rgba(220,20,60,0.06);
   --shadow: 0 4px 24px rgba(0,0,0,0.5);
