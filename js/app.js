@@ -408,15 +408,15 @@
         size: 1 + Math.random() * 2.5,
         life: 1,
         decay: 0.002 + Math.random() * 0.004,
-        type: Math.random() > 0.6 ? 'red' : (Math.random() > 0.5 ? 'gold' : 'white')
+        type: Math.random() > 0.5 ? 'red' : (Math.random() > 0.4 ? 'cherry' : 'white')
       });
     }
 
     function getParticleColor(type, alpha) {
       switch (type) {
-        case 'red': return `rgba(184,28,50,${alpha})`;
-        case 'gold': return `rgba(160,90,70,${alpha})`;
-        default: return `rgba(242,232,228,${alpha})`;
+        case 'red': return `rgba(220,20,60,${alpha})`;
+        case 'cherry': return `rgba(185,28,58,${alpha})`;
+        default: return `rgba(255,255,255,${alpha})`;
       }
     }
 
@@ -560,13 +560,13 @@
         ring.style.transform = `translate(${rx}px, ${ry}px) scale(${scale})`;
         // Pulse the dot glow in sync
         const intensity = (scale - 0.95) / 0.3; // 0 to 1 range
-        cursor.style.boxShadow = `0 0 ${8 + intensity * 20}px rgba(196,30,58,${0.5 + intensity * 0.5})`;
-        ring.style.borderColor = `rgba(196,30,58,${0.4 + intensity * 0.5})`;
-        ring.style.boxShadow = `0 0 ${intensity * 15}px rgba(196,30,58,${intensity * 0.4}), inset 0 0 ${intensity * 8}px rgba(196,30,58,${intensity * 0.15})`;
+        cursor.style.boxShadow = `0 0 ${8 + intensity * 20}px rgba(220,20,60,${0.5 + intensity * 0.5})`;
+        ring.style.borderColor = `rgba(220,20,60,${0.4 + intensity * 0.5})`;
+        ring.style.boxShadow = `0 0 ${intensity * 15}px rgba(220,20,60,${intensity * 0.4}), inset 0 0 ${intensity * 8}px rgba(220,20,60,${intensity * 0.15})`;
       } else {
         beatTime = 0;
         ring.style.transform = `translate(${rx}px, ${ry}px) scale(1)`;
-        cursor.style.boxShadow = '0 0 8px rgba(196,30,58,0.6)';
+        cursor.style.boxShadow = '0 0 8px rgba(220,20,60,0.6)';
         ring.style.borderColor = '';
         ring.style.boxShadow = '';
       }
@@ -584,7 +584,7 @@
         const size = t.life * (hovering ? 4 : 2.5);
         tctx.beginPath();
         tctx.arc(t.x, t.y, size, 0, Math.PI * 2);
-        tctx.fillStyle = `rgba(196,30,58,${alpha})`;
+        tctx.fillStyle = `rgba(220,20,60,${alpha})`;
         tctx.fill();
       }
 
